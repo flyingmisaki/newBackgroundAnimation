@@ -1,7 +1,7 @@
 const getRandomParticelPos = (particleCount) => {
     const arr = new Float32Array(particleCount * 3)
     for (let i = 0; i < particleCount; i++) {
-        arr[i] = (Math.random() - 0.5) * 10
+        arr[i] = (Math.random() - 0.5) * 20
     }
     return arr
 }
@@ -37,7 +37,7 @@ const main = () => {
     const fov = 60
     const aspect = window.innerWidth/window.innerHeight
     const near = 0.1
-    const far = 10
+    const far = 50
     // create camera
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
     camera.position.z = 2
@@ -46,7 +46,7 @@ const main = () => {
     const scene = new THREE.Scene()
 
     const geometry = new THREE.BufferGeometry()
-    const noOfPoints = 1000
+    const noOfPoints = 2500
     geometry.setAttribute("position", new THREE.BufferAttribute(getRandomParticelPos(noOfPoints), 3))
   
     const material = new THREE.PointsMaterial({size: 0.05})
@@ -65,11 +65,11 @@ const main = () => {
             camera.updateProjectionMatrix()
         }
     
-        point.rotation.x = mouseY * 0.0005
-        point.rotation.y = mouseX * 0.0005
+        point.rotation.x = mouseY * 0.000075
+        point.rotation.y = mouseX * 0.000075
     
-        point.position.x = mouseX * 0.001
-        point.position.y = mouseY * -0.001
+        point.position.x = mouseX * 0.00075
+        point.position.y = mouseY * -0.00075
     
         // render the scene
         renderer.render(scene, camera)
